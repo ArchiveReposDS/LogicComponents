@@ -29,10 +29,8 @@ namespace LogicComponents
             Cable.Join(HalfAdder1.OUTCarry, Or.Pin1);
             Cable.Join(HalfAdder1.OUTSum, HalfAdder2.IN1);
             Cable.Join(HalfAdder2.OUTCarry, Or.Pin2);
-
-            OUTCarry.State = Or.Output.State;
-            OUTSum.State = HalfAdder2.OUTSum.State;
-       
+            Cable.Join(Or.Output, OUTCarry);
+            Cable.Join(HalfAdder2.OUTSum, OUTSum);
         }
 
 

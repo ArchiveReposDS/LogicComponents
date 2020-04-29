@@ -23,8 +23,8 @@ namespace LogicComponents
 
         private void GetOutput()
         {
-            OUTSum.State = Xor.Output.State;
-            OUTCarry.State = And.Output.State;
+            Cable.Join(Xor.Output, OUTSum);
+            Cable.Join(And.Output, OUTCarry);
         }
 
     }

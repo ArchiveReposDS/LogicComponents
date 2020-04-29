@@ -113,17 +113,16 @@ namespace LogicComponents
             Cable.Join(FullAdder5.OUTCarry, FullAdder6.IN1);
             Cable.Join(FullAdder6.OUTCarry, FullAdder7.IN1);
 
+            Cable.Join(HalfAdder.OUTSum, OUTSum0);
+            Cable.Join(FullAdder1.OUTSum, OUTSum1);
+            Cable.Join(FullAdder2.OUTSum, OUTSum2);
+            Cable.Join(FullAdder3.OUTSum, OUTSum3);
+            Cable.Join(FullAdder4.OUTSum, OUTSum4);
+            Cable.Join(FullAdder5.OUTSum, OUTSum5);
+            Cable.Join(FullAdder6.OUTSum, OUTSum6);
+            Cable.Join(FullAdder7.OUTSum, OUTSum7);
 
-            OUTSum0.State = HalfAdder.OUTSum.State;
-            OUTSum1.State = FullAdder1.OUTSum.State;
-            OUTSum2.State = FullAdder2.OUTSum.State;
-            OUTSum3.State = FullAdder3.OUTSum.State;
-            OUTSum4.State = FullAdder4.OUTSum.State;
-            OUTSum5.State = FullAdder5.OUTSum.State;
-            OUTSum6.State = FullAdder6.OUTSum.State;
-            OUTSum7.State = FullAdder7.OUTSum.State;
-
-            OUTCarry.State = FullAdder7.OUTCarry.State;
+            Cable.Join(FullAdder7.OUTCarry, OUTCarry);
         }
     }
 }

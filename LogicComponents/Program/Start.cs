@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LogicComponents.Gates;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -44,6 +45,9 @@ namespace LogicComponents
             Pin pin7B = new Pin();
             pin7B.Set(0);
 
+            GatedLatch g = new GatedLatch();
+            Cable.Join(pin1, g.WriteEnable); // 1
+            Cable.Join(pin0, g.DataInput); // 1 
 
 
             Adder8bits adder8bits = new Adder8bits();
