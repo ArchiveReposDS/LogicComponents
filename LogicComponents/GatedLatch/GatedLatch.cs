@@ -20,6 +20,12 @@ namespace LogicComponents
             GetOutput();
         }
 
+        public override void ConnectReadEnable()
+        {
+            Cable.Join(ReadEnable, And4.Pin2);
+            GetOutput();
+        }
+
         private void GetOutput()
         {
             Cable.Join(Not1.Output, And2.Pin1);
@@ -28,7 +34,9 @@ namespace LogicComponents
             Cable.Join(Or.Output, And3.Pin1);
             Cable.Join(Not2.Output, And3.Pin2);
             Cable.Join(And3.Output, Or.Pin1);
-            Cable.Join(And3.Output, DataOutput);
+            Cable.Join(And3.Output, And4.Pin1);
+     
+            Cable.Join(And4.Output, DataOutput);
         }
 
 

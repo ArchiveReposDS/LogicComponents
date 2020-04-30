@@ -11,7 +11,7 @@ namespace LogicComponents
         {
 
             Pin pin0 = new Pin();
-            pin0.Set(1);
+            pin0.Set(0);
             Pin pin1 = new Pin();
             pin1.Set(1);
             Pin pin2 = new Pin();
@@ -45,10 +45,12 @@ namespace LogicComponents
             Pin pin7B = new Pin();
             pin7B.Set(0);
 
-            GatedLatch g = new GatedLatch();
-            Cable.Join(pin1, g.WriteEnable); // 1
-            Cable.Join(pin0, g.DataInput); // 1 
+            Demultiplexer8 d = new Demultiplexer8();
 
+            Cable.Join(pin1, d.Power);
+            Cable.Join(pin1, d.IN1);
+            Cable.Join(pin1, d.IN2);
+            Cable.Join(pin1, d.IN3);
 
             Adder8bits adder8bits = new Adder8bits();
 

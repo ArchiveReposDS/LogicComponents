@@ -22,6 +22,7 @@ namespace LogicComponents.Gates
             EventIN1 += RunIN1;
             Pin1 = new Pin(EventIN1);
             Output = new Pin();
+            Output.State = 1;
         }
 
         public void RunIN1()
