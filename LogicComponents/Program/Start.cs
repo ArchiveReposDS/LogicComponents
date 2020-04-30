@@ -47,10 +47,14 @@ namespace LogicComponents
 
             Demultiplexer8 d = new Demultiplexer8();
 
+
+
+
             Cable.Join(pin1, d.Power);
             Cable.Join(pin1, d.IN1);
             Cable.Join(pin1, d.IN2);
             Cable.Join(pin1, d.IN3);
+
 
             Adder8bits adder8bits = new Adder8bits();
 

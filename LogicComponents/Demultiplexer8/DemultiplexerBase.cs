@@ -48,9 +48,9 @@ namespace LogicComponents
             EventIN2 += ConnectIN2;
             EventIN3 += ConnectIN3;
             EventIN4 += ConnectPower;
-            IN1 = new Pin(EventIN1);
-            IN2 = new Pin(EventIN2);
             IN3 = new Pin(EventIN3);
+            IN2 = new Pin(EventIN2);
+            IN1 = new Pin(EventIN1);
             Power = new Pin(EventIN4);
             OUT0 = new Pin();
             OUT1 = new Pin();
@@ -63,7 +63,7 @@ namespace LogicComponents
         }
 
 
-        public virtual void ConnectIN1()
+        public virtual void ConnectIN3()
         {
 
         }
@@ -73,7 +73,7 @@ namespace LogicComponents
 
         }
 
-        public virtual void ConnectIN3()
+        public virtual void ConnectIN1()
         {
 
         }

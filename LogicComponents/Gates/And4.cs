@@ -27,8 +27,8 @@ namespace LogicComponents.Gates
         {
             EventIN1 += RunIN1;
             EventIN2 += RunIN2;
-            EventIN2 += RunIN3;
-            EventIN2 += RunIN4;
+            EventIN3 += RunIN3;
+            EventIN4 += RunIN4;
             Pin1 = new Pin(EventIN1);
             Pin2 = new Pin(EventIN2);
             Pin3 = new Pin(EventIN3);

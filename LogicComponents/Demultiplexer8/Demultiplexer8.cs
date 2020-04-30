@@ -8,14 +8,13 @@ namespace LogicComponents
     {
         public override void ConnectIN1()
         {
-            Cable.Join(IN1, And4.Pin2);
-            Cable.Join(IN1, And5.Pin2);
-            Cable.Join(IN1, And6.Pin2);
-            Cable.Join(IN1, And7.Pin2);
-            Cable.Join(IN1, Not1.Pin1);
+            Cable.Join(IN1, And1.Pin4);
+            Cable.Join(IN1, And3.Pin4);
+            Cable.Join(IN1, And5.Pin4);
+            Cable.Join(IN1, And7.Pin4);
+            Cable.Join(IN1, Not3.Pin1);
             GetOutput();
         }
-
         public override void ConnectIN2()
         {
             Cable.Join(IN2, And2.Pin3);
@@ -25,20 +24,18 @@ namespace LogicComponents
             Cable.Join(IN2, Not2.Pin1);
             GetOutput();
         }
-
         public override void ConnectIN3()
         {
-            Cable.Join(IN3, And1.Pin4);
-            Cable.Join(IN3, And3.Pin4);
-            Cable.Join(IN3, And5.Pin4);
-            Cable.Join(IN3, And7.Pin4);
-            Cable.Join(IN3, Not3.Pin1);
+            Cable.Join(IN3, And4.Pin2);
+            Cable.Join(IN3, And5.Pin2);
+            Cable.Join(IN3, And6.Pin2);
+            Cable.Join(IN3, And7.Pin2);
+            Cable.Join(IN3, Not1.Pin1);
             GetOutput();
         }
 
         public override void ConnectPower()
         {
-
             Cable.Join(Power, And0.Pin1);
             Cable.Join(Power, And1.Pin1);
             Cable.Join(Power, And2.Pin1);
