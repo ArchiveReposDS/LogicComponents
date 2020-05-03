@@ -24,7 +24,7 @@ namespace LogicComponents
         public Pin DataOutput { get; set; }
 
         // ELEMENTS
-        public GatedLatch GatedLatch { get; set; }
+        public GatedLatch GatedLatch { get; set; } = new GatedLatch();
         public And And1 { get; set; } = new And();
         public And And2 { get; set; } = new And();
         public And And3 { get; set; } = new And();

@@ -32,6 +32,7 @@ namespace LogicComponents
         public override void ConnectReadEnable()
         {
             Cable.Join(ReadEnable, And3.Pin2);
+            Cable.Join(ReadEnable, GatedLatch.ReadEnable);
             GetOutput();
         }
         private void GetOutput()

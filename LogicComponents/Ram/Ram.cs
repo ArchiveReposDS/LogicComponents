@@ -6,6 +6,12 @@ namespace LogicComponents
 {
     public class Ram :RamBase
     {
+        public override void ConnectPower()
+        {
+            Cable.Join(Power, Demultiplexer8Column.Power);
+            Cable.Join(Power, Demultiplexer8Row.Power);
+            GetOutput();
+        }
         public override void ConnectDataInput()
         {
             Cable.Join(DataInput, RowColumnGatedLatch1.DataInput);
@@ -78,12 +84,12 @@ namespace LogicComponents
             Cable.Join(Demultiplexer8Column.OUT1, RowColumnGatedLatch2.INColumn);
             Cable.Join(Demultiplexer8Column.OUT1, RowColumnGatedLatch4.INColumn);
 
-            Cable.Join(RowColumnGatedLatch1.DataOutput, And4Inputs.Pin1);
-            Cable.Join(RowColumnGatedLatch2.DataOutput, And4Inputs.Pin2);
-            Cable.Join(RowColumnGatedLatch3.DataOutput, And4Inputs.Pin3);
-            Cable.Join(RowColumnGatedLatch4.DataOutput, And4Inputs.Pin4);
+            Cable.Join(RowColumnGatedLatch1.DataOutput, Or4Inputs.Pin1);
+            Cable.Join(RowColumnGatedLatch2.DataOutput, Or4Inputs.Pin2);
+            Cable.Join(RowColumnGatedLatch3.DataOutput, Or4Inputs.Pin3);
+            Cable.Join(RowColumnGatedLatch4.DataOutput, Or4Inputs.Pin4);
 
-            Cable.Join(And4Inputs.Pin4, DataOutput);
+            Cable.Join(Or4Inputs.Output, DataOutput);
         }
 
     }

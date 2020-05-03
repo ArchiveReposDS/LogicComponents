@@ -8,6 +8,7 @@ namespace LogicComponents
 {
     public class RamBase
     {
+        public event ActionDel EventPower;
         public event ActionDel EventDataInput;
         public event ActionDel EventWriteEnable;
         public event ActionDel EventReadEnable;
@@ -19,6 +20,7 @@ namespace LogicComponents
         public event ActionDel EventColumn4;
 
         // INPUT
+        public Pin Power { get; set; }
         public Pin DataInput { get; set; }
         public Pin WriteEnable { get; set; }
         public Pin ReadEnable { get; set; }
@@ -39,7 +41,7 @@ namespace LogicComponents
         public RowColumnGatedLatch RowColumnGatedLatch4 { get; set; } = new RowColumnGatedLatch();
         public Demultiplexer8 Demultiplexer8Row { get; set; } = new Demultiplexer8();
         public Demultiplexer8 Demultiplexer8Column { get; set; } = new Demultiplexer8();
-        public And4 And4Inputs { get; set; } = new And4();
+        public Or4 Or4Inputs { get; set; } = new Or4();
 
         public RamBase()
         {
@@ -48,6 +50,7 @@ namespace LogicComponents
 
         private void Initialize()
         {
+            EventPower += ConnectPower;
             EventDataInput += ConnectDataInput;
             EventWriteEnable += ConnectWriteEnable;
             EventReadEnable += ConnectReadEnable;
@@ -57,6 +60,7 @@ namespace LogicComponents
             EventColumn0 += ConnectColumn0;
             EventColumn2 += ConnectColumn2;
             EventColumn4 += ConnectColumn4;
+            EventColumn4 += ConnectPower;
 
             DataInput = new Pin(EventDataInput);
             WriteEnable = new Pin(EventWriteEnable);
@@ -67,6 +71,7 @@ namespace LogicComponents
             INColumn0 = new Pin(EventColumn0);
             INColumn2 = new Pin(EventColumn2);
             INColumn4 = new Pin(EventColumn4);
+            Power = new Pin(EventPower);
 
             DataOutput = new Pin();
         }
@@ -103,6 +108,9 @@ namespace LogicComponents
         {
         }
         public virtual void ConnectColumn4()
+        {
+        }
+        public virtual void ConnectPower()
         {
         }
     }

@@ -48,17 +48,48 @@ namespace LogicComponents
 
             Ram r = new Ram();
 
-
+            Cable.Join(new Pin() { State = 1 }, r.Power);
+      
+            Cable.Join(new Pin() { State = 0 }, r.INRow0);
+            Cable.Join(new Pin() { State = 0 }, r.INColumn0);
+            Cable.Join(new Pin() { State = 1 }, r.DataInput);
             Cable.Join(new Pin() { State = 1 }, r.WriteEnable);
+            Cable.Join(new Pin() { State = 0 }, r.WriteEnable);
+            Cable.Join(new Pin() { State = 0 }, r.DataInput);
+
+
             Cable.Join(new Pin() { State = 1 }, r.INRow0);
             Cable.Join(new Pin() { State = 1 }, r.INColumn0);
             Cable.Join(new Pin() { State = 1 }, r.DataInput);
+            Cable.Join(new Pin() { State = 1 }, r.WriteEnable);
             Cable.Join(new Pin() { State = 0 }, r.WriteEnable);
+            Cable.Join(new Pin() { State = 0 }, r.DataInput);
+
+
+      
+            Cable.Join(new Pin() { State = 0 }, r.INRow0);
+            Cable.Join(new Pin() { State = 0 }, r.INColumn0);
+
             Cable.Join(new Pin() { State = 1 }, r.ReadEnable);
+            Cable.Join(new Pin() { State = 0 }, r.ReadEnable);
 
+            Cable.Join(new Pin() { State = 1 }, r.INRow0);
+            Cable.Join(new Pin() { State = 0 }, r.INColumn0);
 
+            Cable.Join(new Pin() { State = 1 }, r.ReadEnable);
+            Cable.Join(new Pin() { State = 0 }, r.ReadEnable);
 
+            Cable.Join(new Pin() { State = 0 }, r.INRow0);
+            Cable.Join(new Pin() { State = 1 }, r.INColumn0);
 
+            Cable.Join(new Pin() { State = 1 }, r.ReadEnable);
+            Cable.Join(new Pin() { State = 0 }, r.ReadEnable);
+
+            Cable.Join(new Pin() { State = 1 }, r.INRow0);
+            Cable.Join(new Pin() { State = 1 }, r.INColumn0);
+
+            Cable.Join(new Pin() { State = 1 }, r.ReadEnable);
+            Cable.Join(new Pin() { State = 0 }, r.ReadEnable);
 
 
 
