@@ -55,27 +55,22 @@ namespace LogicComponents
 
         public virtual void ConnectDataInput()
         {
-
         }
 
         public virtual void ConnectWriteEnable()
         {
-
         }
 
         public virtual void ConnectReadEnable()
         {
-
         }
 
         public virtual void ConnectRow()
         {
-
         }
 
         public virtual void ConnectColumn()
         {
-
         }
     }
 }
