@@ -1,4 +1,4 @@
-﻿using LogicComponents.Gates;
+﻿using LogicComponents;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -44,6 +44,23 @@ namespace LogicComponents
             pin6B.Set(0);
             Pin pin7B = new Pin();
             pin7B.Set(0);
+
+
+            Ram r = new Ram();
+
+
+            Cable.Join(new Pin() { State = 1 }, r.WriteEnable);
+            Cable.Join(new Pin() { State = 1 }, r.INRow0);
+            Cable.Join(new Pin() { State = 1 }, r.INColumn0);
+            Cable.Join(new Pin() { State = 1 }, r.DataInput);
+            Cable.Join(new Pin() { State = 0 }, r.WriteEnable);
+            Cable.Join(new Pin() { State = 1 }, r.ReadEnable);
+
+
+
+
+
+
 
             Demultiplexer8 d = new Demultiplexer8();
 

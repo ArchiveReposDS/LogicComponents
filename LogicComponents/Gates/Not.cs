@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using static LogicComponents.DelegateDS;
 
-namespace LogicComponents.Gates
+namespace LogicComponents
 {
     public class Not
     {
