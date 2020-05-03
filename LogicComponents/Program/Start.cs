@@ -12,67 +12,20 @@ namespace LogicComponents
             int a = CounterClass.CounterCable;
             int aa = CounterClass.CounterAction;
 
-            Ram r = new Ram();
+            Ram8 r = new Ram8();
 
             RamHelper rh = new RamHelper(r);
 
-            rh.Save(1, 13);
-            rh.Save(1, 23);
+            byte[] value1 = new byte[] { 1, 0, 0, 0, 0, 0, 0, 1 };
+            byte[] value2 = new byte[] { 1, 0, 0, 1, 1, 0, 0, 1 };
 
-            byte b12 = rh.Load(12);
-            byte b13 = rh.Load(13);
-            byte b14 = rh.Load(14);
-
-            byte b23 = rh.Load(23);
-            byte b24 = rh.Load(24);
-            byte b25 = rh.Load(25);
-
-
+            rh.Save(value1, 0);
+            var b12 = rh.Load(0);
 
 
             Cable.Join(new Pin() { State = 1 }, r.Power);
-      
-            // save to
-            Cable.Join(new Pin() { State = 1 }, r.INRow4); // ROW
-            Cable.Join(new Pin() { State = 1 }, r.INColumn2); // COLUMN
-            Cable.Join(new Pin() { State = 1 }, r.DataInput);
-            Cable.Join(new Pin() { State = 1 }, r.WriteEnable);
-            Cable.Join(new Pin() { State = 0 }, r.WriteEnable);
-            Cable.Join(new Pin() { State = 0 }, r.DataInput);
 
-
-            Cable.Join(new Pin() { State = 1 }, r.INRow4);
-            Cable.Join(new Pin() { State = 1 }, r.INColumn4);
-            Cable.Join(new Pin() { State = 1 }, r.DataInput);
-            Cable.Join(new Pin() { State = 1 }, r.WriteEnable);
-            Cable.Join(new Pin() { State = 0 }, r.WriteEnable);
-            Cable.Join(new Pin() { State = 0 }, r.DataInput);
-
-
-      
-            Cable.Join(new Pin() { State = 0 }, r.INRow0);
-            Cable.Join(new Pin() { State = 0 }, r.INColumn0);
-
-            Cable.Join(new Pin() { State = 1 }, r.ReadEnable);
-            Cable.Join(new Pin() { State = 0 }, r.ReadEnable);
-
-            Cable.Join(new Pin() { State = 1 }, r.INRow0);
-            Cable.Join(new Pin() { State = 0 }, r.INColumn0);
-
-            Cable.Join(new Pin() { State = 1 }, r.ReadEnable);
-            Cable.Join(new Pin() { State = 0 }, r.ReadEnable);
-
-            Cable.Join(new Pin() { State = 0 }, r.INRow0);
-            Cable.Join(new Pin() { State = 1 }, r.INColumn0);
-
-            Cable.Join(new Pin() { State = 1 }, r.ReadEnable);
-            Cable.Join(new Pin() { State = 0 }, r.ReadEnable);
-
-            Cable.Join(new Pin() { State = 1 }, r.INRow0);
-            Cable.Join(new Pin() { State = 1 }, r.INColumn0);
-
-            Cable.Join(new Pin() { State = 1 }, r.ReadEnable);
-            Cable.Join(new Pin() { State = 0 }, r.ReadEnable);
+        
 
 
 
