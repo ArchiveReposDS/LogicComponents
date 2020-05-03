@@ -9,6 +9,8 @@ namespace LogicComponents
     {
         public void Run()
         {
+            int a = CounterClass.CounterCable;
+            int aa = CounterClass.CounterAction;
 
             Ram r = new Ram();
 
@@ -24,6 +26,8 @@ namespace LogicComponents
             byte b23 = rh.Load(23);
             byte b24 = rh.Load(24);
             byte b25 = rh.Load(25);
+
+
 
 
             Cable.Join(new Pin() { State = 1 }, r.Power);
