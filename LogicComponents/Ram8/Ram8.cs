@@ -2,6 +2,20 @@
 {
     public class Ram8 : Ram8Base
     {
+
+        // Address0 - AEX - ACCUMULATION REGISTER
+        // Address1 - BEX
+        // Address2 - CEX
+        // Address3 - DEX - DATA REGISTER 
+        // Address4 - EEX
+        // Address6 - FEX - FLAG REGISTER
+        // Address7 - GEX -
+        // Address8 - IPX - Instuction Pointer 
+        // Address9 - IST - Stack TOP 
+        // Address10 - ISB - Stack BOTTOM 
+
+
+
         public override void ConnectRow0()
         {
             Cable.Join(INRow0, Ram1.INRow0);

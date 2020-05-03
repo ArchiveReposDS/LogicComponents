@@ -5,36 +5,58 @@ using System.Text;
 
 namespace LogicComponents
 {
+
+    // Address0 - AEX - ACCUMULATION REGISTER
+    // Address1 - BEX
+    // Address2 - CEX
+    // Address3 - DEX - DATA REGISTER 
+    // Address4 - EEX
+    // Address6 - FEX - FLAG REGISTER
+    // Address7 - GEX -
+    // Address8 - IPX - Instuction Pointer 
+    // Address9 - IST - Stack TOP 
+    // Address10 - ISB - Stack BOTTOM 
+
+
     public class Start
     {
         public void Run()
         {
-            int a = CounterClass.CounterCable;
-            int aa = CounterClass.CounterAction;
+            CounterClass.CounterCable = 0;
+            CounterClass.CounterAction = 0;
 
-            Ram8 r = new Ram8();
+            // 1. zaladowac program do ramu
 
-            RamHelper rh = new RamHelper(r);
+            Ram8 ram = new Ram8();
+            RamHelper ramHelper = new RamHelper(ram);
+
+            string ins1 = "mov eax, 3";
+
 
             byte[] value1 = new byte[] { 1, 0, 0, 0, 0, 0, 0, 1 };
             byte[] value2 = new byte[] { 1, 0, 0, 1, 1, 0, 0, 1 };
 
-            rh.Save(value1, 0);
-            var b12 = rh.Load(0);
+            ramHelper.Save(value1, 0);
+            var aa = ramHelper.Load(0);
+
+            // 2. uruchomic program
+            // zegar tworzy impulsy, licznik impulsow uruchamia odpowiednia sciezke ktora wykonuje kroki programu
+            // a) Instruction counter ++ 
+            // b) Fetch instruction
+            // c) decoding 
+            // d) executing
 
 
-            Cable.Join(new Pin() { State = 1 }, r.Power);
+
+
+
+
+
 
         
 
 
 
-            Demultiplexer8 d = new Demultiplexer8();
-
-
-
-
-            int k = 1;
 
 
 
