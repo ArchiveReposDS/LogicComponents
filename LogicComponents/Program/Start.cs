@@ -25,6 +25,72 @@ namespace LogicComponents
             CounterClass.CounterCable = 0;
             CounterClass.CounterAction = 0;
 
+
+
+            Register registerA = new Register();
+
+            Cable.Join(new Pin() { State = 1 }, registerA.DataInput1);
+            Cable.Join(new Pin() { State = 1 }, registerA.DataInput2);
+            Cable.Join(new Pin() { State = 0 }, registerA.DataInput3);
+            Cable.Join(new Pin() { State = 0 }, registerA.DataInput4);
+            Cable.Join(new Pin() { State = 0 }, registerA.DataInput5);
+            Cable.Join(new Pin() { State = 0 }, registerA.DataInput6);
+            Cable.Join(new Pin() { State = 1 }, registerA.DataInput7);
+            Cable.Join(new Pin() { State = 1 }, registerA.DataInput8);
+
+            int i1 = registerA.DataOutput1.State;
+            int i2 = registerA.DataOutput2.State;
+            int i3 = registerA.DataOutput3.State;
+            int i4 = registerA.DataOutput4.State;
+            int i5 = registerA.DataOutput5.State;
+            int i6 = registerA.DataOutput6.State;
+            int i7 = registerA.DataOutput7.State;
+            int i8 = registerA.DataOutput8.State;
+
+            Cable.Join(new Pin() { State = 1 }, registerA.WriteEnable);
+            Cable.Join(new Pin() { State = 0 }, registerA.WriteEnable);
+
+            Cable.Join(new Pin() { State = 0 }, registerA.DataInput1);
+            Cable.Join(new Pin() { State = 0 }, registerA.DataInput2);
+            Cable.Join(new Pin() { State = 0 }, registerA.DataInput3);
+            Cable.Join(new Pin() { State = 0 }, registerA.DataInput4);
+            Cable.Join(new Pin() { State = 0 }, registerA.DataInput5);
+            Cable.Join(new Pin() { State = 0 }, registerA.DataInput6);
+            Cable.Join(new Pin() { State = 0 }, registerA.DataInput7);
+            Cable.Join(new Pin() { State = 0 }, registerA.DataInput8);
+
+            int q1 = registerA.DataOutput1.State;
+            int q2 = registerA.DataOutput2.State;
+            int q3 = registerA.DataOutput3.State;
+            int q4 = registerA.DataOutput4.State;
+            int q5 = registerA.DataOutput5.State;
+            int q6 = registerA.DataOutput6.State;
+            int q7 = registerA.DataOutput7.State;
+            int q8 = registerA.DataOutput8.State;
+
+
+            Cable.Join(new Pin() { State = 1 }, registerA.ReadEnable);
+
+            int w1 = registerA.DataOutput1.State;
+            int w2 = registerA.DataOutput2.State;
+            int w3 = registerA.DataOutput3.State;
+            int w4 = registerA.DataOutput4.State;
+            int w5 = registerA.DataOutput5.State;
+            int w6 = registerA.DataOutput6.State;
+            int w7 = registerA.DataOutput7.State;
+            int w8 = registerA.DataOutput8.State;
+
+
+
+
+
+
+
+
+
+
+
+
             // 1. zaladowac program do ramu
 
             Ram8 ram = new Ram8();

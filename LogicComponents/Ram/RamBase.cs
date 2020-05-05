@@ -100,9 +100,6 @@ namespace LogicComponents
         public RowColumnGatedLatch RowColumnGatedLatch63 { get; set; } = new RowColumnGatedLatch();
         public RowColumnGatedLatch RowColumnGatedLatch64 { get; set; } = new RowColumnGatedLatch();
 
-
-
-
         public Demultiplexer8 Demultiplexer8Row { get; set; } = new Demultiplexer8();
         public Demultiplexer8 Demultiplexer8Column { get; set; } = new Demultiplexer8();
         public Or64Inputs Or64Inputs { get; set; } = new Or64Inputs();
