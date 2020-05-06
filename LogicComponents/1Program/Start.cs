@@ -27,16 +27,46 @@ namespace LogicComponents
 
 
 
+            DataBus Db = new DataBus();
             Register registerA = new Register();
 
+            Db.RegisterA = registerA;
+
+            Cable.Join(new Pin() { State = 1 }, registerA.WriteEnable);
             Cable.Join(new Pin() { State = 1 }, registerA.DataInput1);
             Cable.Join(new Pin() { State = 1 }, registerA.DataInput2);
-            Cable.Join(new Pin() { State = 0 }, registerA.DataInput3);
+            Cable.Join(new Pin() { State = 1 }, registerA.DataInput3);
             Cable.Join(new Pin() { State = 0 }, registerA.DataInput4);
-            Cable.Join(new Pin() { State = 0 }, registerA.DataInput5);
-            Cable.Join(new Pin() { State = 0 }, registerA.DataInput6);
+            Cable.Join(new Pin() { State = 1 }, registerA.DataInput5);
+            Cable.Join(new Pin() { State = 1 }, registerA.DataInput6);
             Cable.Join(new Pin() { State = 1 }, registerA.DataInput7);
             Cable.Join(new Pin() { State = 1 }, registerA.DataInput8);
+
+            // z A do B
+            Cable.Join(new Pin() { State = 1 }, Db.FromA);
+            Cable.Join(new Pin() { State = 1 }, Db.ToB); 
+
+            // z A do Ramu
+            Cable.Join(new Pin() { State = 1 }, Db.RamAddressColumn1);
+            Cable.Join(new Pin() { State = 1 }, Db.RamAddressRow1);
+            Cable.Join(new Pin() { State = 1 }, Db.ToRam);
+
+            // z Ramu adres 00 do B - skasowanie B
+            Cable.Join(new Pin() { State = 0 }, Db.RamAddressColumn1);
+            Cable.Join(new Pin() { State = 0 }, Db.RamAddressRow1);
+            Cable.Join(new Pin() { State = 1 }, Db.FromRam);
+            Cable.Join(new Pin() { State = 0 }, Db.ToB);
+            Cable.Join(new Pin() { State = 1 }, Db.ToB);
+
+            // z Ramu adres 11 do B - Przywrocenie stanu B
+            Cable.Join(new Pin() { State = 1 }, Db.RamAddressColumn1);
+            Cable.Join(new Pin() { State = 1 }, Db.RamAddressRow1);
+            Cable.Join(new Pin() { State = 0 }, Db.FromRam);
+            Cable.Join(new Pin() { State = 1 }, Db.FromRam);
+            Cable.Join(new Pin() { State = 0 }, Db.ToB);
+            Cable.Join(new Pin() { State = 1 }, Db.ToB);
+
+
 
             int i1 = registerA.DataOutput1.State;
             int i2 = registerA.DataOutput2.State;
@@ -47,7 +77,7 @@ namespace LogicComponents
             int i7 = registerA.DataOutput7.State;
             int i8 = registerA.DataOutput8.State;
 
-            Cable.Join(new Pin() { State = 1 }, registerA.WriteEnable);
+     
             Cable.Join(new Pin() { State = 0 }, registerA.WriteEnable);
 
             Cable.Join(new Pin() { State = 0 }, registerA.DataInput1);
