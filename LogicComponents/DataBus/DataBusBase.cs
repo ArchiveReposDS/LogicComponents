@@ -55,6 +55,7 @@ namespace LogicComponents
         public Register RegisterA { get; set; } = new Register();
         public Register RegisterB { get; set; } = new Register();
         public Ram8 Ram { get; set; } = new Ram8();
+        public Not Not { get; set; } = new Not();
 
         public DataBusBase()
         {

@@ -35,6 +35,7 @@ namespace LogicComponents
 
         public override void MethodFromRam()
         {
+            Cable.Join(FromRam, Ram.Power);
             Cable.Join(FromRam, Ram.ReadEnable);
             Cable.Join(Ram.Ram1.DataOutput, DataWire1);
             Cable.Join(Ram.Ram2.DataOutput, DataWire2);
@@ -147,6 +148,7 @@ namespace LogicComponents
 
         public override void MethodToRam()
         {
+            Cable.Join(ToRam, Ram.Power);
             Cable.Join(ToRam, Ram.WriteEnable);
             Cable.Join(DataWire1, Ram.Ram1.DataInput);
             Cable.Join(DataWire2, Ram.Ram2.DataInput);
@@ -156,6 +158,8 @@ namespace LogicComponents
             Cable.Join(DataWire6, Ram.Ram6.DataInput);
             Cable.Join(DataWire7, Ram.Ram7.DataInput);
             Cable.Join(DataWire8, Ram.Ram8.DataInput);
+            Cable.Join(ToRam, Not.Pin1);
+            Cable.Join(Not.Output, Ram.WriteEnable);
         }
     }
 }
