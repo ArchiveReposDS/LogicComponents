@@ -25,12 +25,12 @@ namespace LogicComponents
             ConvertAddressToBinary(ramAddress, out i4Row, out i2Row, out i0Row, out i4Column, out i2Column, out i0Column);
 
             // SET ADDRESS
-            Cable.Join(new Pin() { State = i0Row }, DataBus.RamAddressRow1);
-            Cable.Join(new Pin() { State = i2Row }, DataBus.RamAddressRow2);
-            Cable.Join(new Pin() { State = i4Row }, DataBus.RamAddressRow3);
-            Cable.Join(new Pin() { State = i0Column }, DataBus.RamAddressColumn1);
-            Cable.Join(new Pin() { State = i2Column }, DataBus.RamAddressColumn2);
-            Cable.Join(new Pin() { State = i4Column }, DataBus.RamAddressColumn3);
+            //Cable.Join(new Pin() { State = i0Row }, DataBus.RamAddressRow1);
+            //Cable.Join(new Pin() { State = i2Row }, DataBus.RamAddressRow2);
+            //Cable.Join(new Pin() { State = i4Row }, DataBus.RamAddressRow3);
+            //Cable.Join(new Pin() { State = i0Column }, DataBus.RamAddressColumn1);
+            //Cable.Join(new Pin() { State = i2Column }, DataBus.RamAddressColumn2);
+            //Cable.Join(new Pin() { State = i4Column }, DataBus.RamAddressColumn3);
         }
        
 

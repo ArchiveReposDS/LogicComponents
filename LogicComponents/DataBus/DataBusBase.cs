@@ -7,18 +7,15 @@ namespace LogicComponents
 {
     public class DataBusBase
     {
-        public event ActionDel EventFromA;
+        public event ActionDel EventFromAReady;
+        public event ActionDel EventFromAGo;
         public event ActionDel EventFromB;
         public event ActionDel EventFromRam;
         public event ActionDel EventToA;
         public event ActionDel EventToB;
         public event ActionDel EventToRam;
-        public event ActionDel EventRamAddressRow1;
-        public event ActionDel EventRamAddressRow2;
-        public event ActionDel EventRamAddressRow3;
-        public event ActionDel EventRamAddressColumn1;
-        public event ActionDel EventRamAddressColumn2;
-        public event ActionDel EventRamAddressColumn3;
+        public event ActionDel EventFromRamAddressReg;
+        public event ActionDel EventToRamAddressReg;
         public event ActionDel EventDataWire1;
         public event ActionDel EventDataWire2;
         public event ActionDel EventDataWire3;
@@ -27,35 +24,37 @@ namespace LogicComponents
         public event ActionDel EventDataWire6;
         public event ActionDel EventDataWire7;
         public event ActionDel EventDataWire8;
+        public event ActionDel EventClock;
 
-        // INPUTS
-        public Pin FromA { get; set; }
-        public Pin FromB { get; set; }
-        public Pin FromRam { get; set; }
-        public Pin ToA { get; set; }
-        public Pin ToB { get; set; }
-        public Pin ToRam { get; set; }
-        public Pin RamAddressRow1 { get; set; }
-        public Pin RamAddressRow2 { get; set; }
-        public Pin RamAddressRow3 { get; set; }
-        public Pin RamAddressColumn1 { get; set; }
-        public Pin RamAddressColumn2 { get; set; }
-        public Pin RamAddressColumn3 { get; set; }
+        // INPUTS PUBLIC
+        public Pin INClock { get; set; }
+        public Pin INToA { get; set; }
+        public Pin INToB { get; set; }
+        public Pin INToRam { get; set; }
+        public Pin INToRamAddressReg { get; set; } 
+        public Pin INFromA { get; set; }
+        public Pin INFromB { get; set; }
+        public Pin INFromRam { get; set; }
+        public Pin INFromRamAddressReg { get; set; } // to by moglo wykonywac sie z automatu
 
-        public Pin DataWire1 { get; set; }
-        public Pin DataWire2 { get; set; }
-        public Pin DataWire3 { get; set; }
-        public Pin DataWire4 { get; set; }
-        public Pin DataWire5 { get; set; }
-        public Pin DataWire6 { get; set; }
-        public Pin DataWire7 { get; set; }
-        public Pin DataWire8 { get; set; }
+        // ELEMENTS PINS
+        internal Pin INFromAGo { get; set; }
+
+        internal Pin DataWire1 { get; set; }
+        internal Pin DataWire2 { get; set; }
+        internal Pin DataWire3 { get; set; }
+        internal Pin DataWire4 { get; set; }
+        internal Pin DataWire5 { get; set; }
+        internal Pin DataWire6 { get; set; }
+        internal Pin DataWire7 { get; set; }
+        internal Pin DataWire8 { get; set; }
 
         // ELEMENTS
         public Register RegisterA { get; set; } = new Register();
         public Register RegisterB { get; set; } = new Register();
+        public Register RamAddressRegister { get; set; } = new Register();
         public Ram8 Ram { get; set; } = new Ram8();
-        public Not Not { get; set; } = new Not();
+        public And AndGateClockFromA { get; set; } = new And();
 
         public DataBusBase()
         {
@@ -64,18 +63,15 @@ namespace LogicComponents
 
         private void Initialize()
         {
-            EventFromA += MethodFromA;
+            EventFromAReady += MethodFromAReady;
+            EventFromAGo += MethodFromAGo;
             EventFromB += MethodFromB;
             EventFromRam += MethodFromRam;
             EventToA += MethodToA;
             EventToB += MethodToB;
             EventToRam += MethodToRam;
-            EventRamAddressRow1 += MethodRamAddressRow1;
-            EventRamAddressRow2 += MethodRamAddressRow2;
-            EventRamAddressRow3 += MethodRamAddressRow3;
-            EventRamAddressColumn1 += MethodRamAddressColumn1;
-            EventRamAddressColumn2 += MethodRamAddressColumn2;
-            EventRamAddressColumn3 += MethodRamAddressColumn3;
+            EventFromRamAddressReg += MethodFromRamAddressReg;
+            EventToRamAddressReg += MethodToRamAddressReg;
             EventDataWire1 += MethodDataWire1;
             EventDataWire1 += MethodDataWire2;
             EventDataWire1 += MethodDataWire3;
@@ -84,20 +80,18 @@ namespace LogicComponents
             EventDataWire1 += MethodDataWire6;
             EventDataWire1 += MethodDataWire7;
             EventDataWire1 += MethodDataWire8;
+            EventClock += MethodClock;
 
 
-            FromA = new Pin(EventFromA);
-            FromB = new Pin(EventFromB);
-            FromRam = new Pin(EventFromRam);
-            ToA = new Pin(EventToA);
-            ToB = new Pin(EventToB);
-            ToRam = new Pin(EventToRam);
-            RamAddressRow1 = new Pin(EventRamAddressRow1);
-            RamAddressRow2 = new Pin(EventRamAddressRow2);
-            RamAddressRow3 = new Pin(EventRamAddressRow3);
-            RamAddressColumn1 = new Pin(EventRamAddressColumn1);
-            RamAddressColumn2 = new Pin(EventRamAddressColumn2);
-            RamAddressColumn3 = new Pin(EventRamAddressColumn3);
+            INFromA = new Pin(EventFromA);
+            INFromAGo = new Pin(EventFromAGo);
+            INFromB = new Pin(EventFromB);
+            INFromRam = new Pin(EventFromRam);
+            INToA = new Pin(EventToA);
+            INToB = new Pin(EventToB);
+            INToRam = new Pin(EventToRam);
+            INFromRamAddressReg = new Pin(EventFromRamAddressReg);
+            INToRamAddressReg = new Pin(EventToRamAddressReg);
             DataWire1 = new Pin(EventDataWire1);
             DataWire2 = new Pin(EventDataWire2);
             DataWire3 = new Pin(EventDataWire3);
@@ -106,7 +100,7 @@ namespace LogicComponents
             DataWire6 = new Pin(EventDataWire6);
             DataWire7 = new Pin(EventDataWire7);
             DataWire8 = new Pin(EventDataWire8);
-
+            INClock = new Pin(EventClock);
 
         }
 
@@ -119,17 +113,15 @@ namespace LogicComponents
         private void MethodDataWire7() { }
         private void MethodDataWire8() { }
 
-        public virtual void MethodFromA() { }
+        public virtual void MethodFromAReady() { }
+        public virtual void MethodFromAGo() { }
         public virtual void MethodFromB() { }
         public virtual void MethodFromRam() { }
         public virtual void MethodToA() { }
         public virtual void MethodToB() { }
         public virtual void MethodToRam() { }
-        public virtual void MethodRamAddressRow1() { }
-        public virtual void MethodRamAddressRow2() { }
-        public virtual void MethodRamAddressRow3() { }
-        public virtual void MethodRamAddressColumn1() { }
-        public virtual void MethodRamAddressColumn2() { }
-        public virtual void MethodRamAddressColumn3() { }
+        public virtual void MethodFromRamAddressReg() { }
+        public virtual void MethodToRamAddressReg() { }
+        public virtual void MethodClock() { }
     }
 }

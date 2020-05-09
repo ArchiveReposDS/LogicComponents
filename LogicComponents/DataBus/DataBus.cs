@@ -6,9 +6,94 @@ namespace LogicComponents
 {
     public class DataBus : DataBusBase
     {
-        public override void MethodFromA()
+        public override void MethodClock()
         {
-            Cable.Join(FromA, RegisterA.ReadEnable);
+            Cable.Join(INClock, AndGateClockFromA.Pin2);
+            Cable.Join(AndGateClockFromA.Output, INFromAGo);
+        }
+
+        public override void MethodFromRamAddressReg()
+        {
+            Cable.Join(INFromRamAddressReg, RamAddressRegister.ReadEnable);
+
+            Cable.Join(RamAddressRegister.GatedLatch1.DataOutput, Ram.Ram1.INRow0);
+            Cable.Join(RamAddressRegister.GatedLatch1.DataOutput, Ram.Ram2.INRow0);
+            Cable.Join(RamAddressRegister.GatedLatch1.DataOutput, Ram.Ram3.INRow0);
+            Cable.Join(RamAddressRegister.GatedLatch1.DataOutput, Ram.Ram4.INRow0);
+            Cable.Join(RamAddressRegister.GatedLatch1.DataOutput, Ram.Ram5.INRow0);
+            Cable.Join(RamAddressRegister.GatedLatch1.DataOutput, Ram.Ram6.INRow0);
+            Cable.Join(RamAddressRegister.GatedLatch1.DataOutput, Ram.Ram7.INRow0);
+            Cable.Join(RamAddressRegister.GatedLatch1.DataOutput, Ram.Ram8.INRow0);
+
+            Cable.Join(RamAddressRegister.GatedLatch2.DataOutput, Ram.Ram1.INRow2);
+            Cable.Join(RamAddressRegister.GatedLatch2.DataOutput, Ram.Ram2.INRow2);
+            Cable.Join(RamAddressRegister.GatedLatch2.DataOutput, Ram.Ram3.INRow2);
+            Cable.Join(RamAddressRegister.GatedLatch2.DataOutput, Ram.Ram4.INRow2);
+            Cable.Join(RamAddressRegister.GatedLatch2.DataOutput, Ram.Ram5.INRow2);
+            Cable.Join(RamAddressRegister.GatedLatch2.DataOutput, Ram.Ram6.INRow2);
+            Cable.Join(RamAddressRegister.GatedLatch2.DataOutput, Ram.Ram7.INRow2);
+            Cable.Join(RamAddressRegister.GatedLatch2.DataOutput, Ram.Ram8.INRow2);
+
+            Cable.Join(RamAddressRegister.GatedLatch3.DataOutput, Ram.Ram1.INRow4);
+            Cable.Join(RamAddressRegister.GatedLatch3.DataOutput, Ram.Ram2.INRow4);
+            Cable.Join(RamAddressRegister.GatedLatch3.DataOutput, Ram.Ram3.INRow4);
+            Cable.Join(RamAddressRegister.GatedLatch3.DataOutput, Ram.Ram4.INRow4);
+            Cable.Join(RamAddressRegister.GatedLatch3.DataOutput, Ram.Ram5.INRow4);
+            Cable.Join(RamAddressRegister.GatedLatch3.DataOutput, Ram.Ram6.INRow4);
+            Cable.Join(RamAddressRegister.GatedLatch3.DataOutput, Ram.Ram7.INRow4);
+            Cable.Join(RamAddressRegister.GatedLatch3.DataOutput, Ram.Ram8.INRow4);
+
+            Cable.Join(RamAddressRegister.GatedLatch4.DataOutput, Ram.Ram1.INColumn0);
+            Cable.Join(RamAddressRegister.GatedLatch4.DataOutput, Ram.Ram2.INColumn0);
+            Cable.Join(RamAddressRegister.GatedLatch4.DataOutput, Ram.Ram3.INColumn0);
+            Cable.Join(RamAddressRegister.GatedLatch4.DataOutput, Ram.Ram4.INColumn0);
+            Cable.Join(RamAddressRegister.GatedLatch4.DataOutput, Ram.Ram5.INColumn0);
+            Cable.Join(RamAddressRegister.GatedLatch4.DataOutput, Ram.Ram6.INColumn0);
+            Cable.Join(RamAddressRegister.GatedLatch4.DataOutput, Ram.Ram7.INColumn0);
+            Cable.Join(RamAddressRegister.GatedLatch4.DataOutput, Ram.Ram8.INColumn0);
+
+            Cable.Join(RamAddressRegister.GatedLatch4.DataOutput, Ram.Ram1.INColumn2);
+            Cable.Join(RamAddressRegister.GatedLatch4.DataOutput, Ram.Ram2.INColumn2);
+            Cable.Join(RamAddressRegister.GatedLatch4.DataOutput, Ram.Ram3.INColumn2);
+            Cable.Join(RamAddressRegister.GatedLatch4.DataOutput, Ram.Ram4.INColumn2);
+            Cable.Join(RamAddressRegister.GatedLatch4.DataOutput, Ram.Ram5.INColumn2);
+            Cable.Join(RamAddressRegister.GatedLatch4.DataOutput, Ram.Ram6.INColumn2);
+            Cable.Join(RamAddressRegister.GatedLatch4.DataOutput, Ram.Ram7.INColumn2);
+            Cable.Join(RamAddressRegister.GatedLatch4.DataOutput, Ram.Ram8.INColumn2);
+
+            Cable.Join(RamAddressRegister.GatedLatch4.DataOutput, Ram.Ram1.INColumn4);
+            Cable.Join(RamAddressRegister.GatedLatch4.DataOutput, Ram.Ram2.INColumn4);
+            Cable.Join(RamAddressRegister.GatedLatch4.DataOutput, Ram.Ram3.INColumn4);
+            Cable.Join(RamAddressRegister.GatedLatch4.DataOutput, Ram.Ram4.INColumn4);
+            Cable.Join(RamAddressRegister.GatedLatch4.DataOutput, Ram.Ram5.INColumn4);
+            Cable.Join(RamAddressRegister.GatedLatch4.DataOutput, Ram.Ram6.INColumn4);
+            Cable.Join(RamAddressRegister.GatedLatch4.DataOutput, Ram.Ram7.INColumn4);
+            Cable.Join(RamAddressRegister.GatedLatch4.DataOutput, Ram.Ram8.INColumn4);
+         
+        }
+
+        public override void MethodToRamAddressReg()
+        {
+            Cable.Join(INToRamAddressReg, RamAddressRegister.WriteEnable);
+            Cable.Join(DataWire1, RamAddressRegister.DataInput1);
+            Cable.Join(DataWire2, RamAddressRegister.DataInput2);
+            Cable.Join(DataWire3, RamAddressRegister.DataInput3);
+            Cable.Join(DataWire4, RamAddressRegister.DataInput4);
+            Cable.Join(DataWire5, RamAddressRegister.DataInput5);
+            Cable.Join(DataWire6, RamAddressRegister.DataInput6);
+            Cable.Join(DataWire7, RamAddressRegister.DataInput7);
+            Cable.Join(DataWire8, RamAddressRegister.DataInput8);
+        }
+
+
+      
+        public override void MethodFromAReady()
+        {
+            Cable.Join(INFromA, AndGateClockFromA.Pin1);
+        }
+        public override void MethodFromAGo()
+        {
+            Cable.Join(INFromAGo, RegisterA.ReadEnable);
             Cable.Join(RegisterA.GatedLatch1.DataOutput, DataWire1);
             Cable.Join(RegisterA.GatedLatch2.DataOutput, DataWire2);
             Cable.Join(RegisterA.GatedLatch3.DataOutput, DataWire3);
@@ -17,12 +102,12 @@ namespace LogicComponents
             Cable.Join(RegisterA.GatedLatch6.DataOutput, DataWire6);
             Cable.Join(RegisterA.GatedLatch7.DataOutput, DataWire7);
             Cable.Join(RegisterA.GatedLatch8.DataOutput, DataWire8);
-
         }
 
         public override void MethodFromB()
         {
-            Cable.Join(FromB, RegisterB.ReadEnable);
+            Cable.Join(INFromB, AndGateClockFromA.Pin1);
+            Cable.Join(AndGateClockFromA.Output, RegisterB.ReadEnable);
             Cable.Join(RegisterB.GatedLatch1.DataOutput, DataWire1);
             Cable.Join(RegisterB.GatedLatch2.DataOutput, DataWire2);
             Cable.Join(RegisterB.GatedLatch3.DataOutput, DataWire3);
@@ -35,8 +120,8 @@ namespace LogicComponents
 
         public override void MethodFromRam()
         {
-            Cable.Join(FromRam, Ram.Power);
-            Cable.Join(FromRam, Ram.ReadEnable);
+            Cable.Join(INFromRam, Ram.Power);
+            Cable.Join(INFromRam, Ram.ReadEnable);
             Cable.Join(Ram.Ram1.DataOutput, DataWire1);
             Cable.Join(Ram.Ram2.DataOutput, DataWire2);
             Cable.Join(Ram.Ram3.DataOutput, DataWire3);
@@ -47,81 +132,10 @@ namespace LogicComponents
             Cable.Join(Ram.Ram8.DataOutput, DataWire8);
         }
 
-        public override void MethodRamAddressColumn1()
-        {
-            Cable.Join(RamAddressColumn1, Ram.Ram1.INColumn0);
-            Cable.Join(RamAddressColumn1, Ram.Ram2.INColumn0);
-            Cable.Join(RamAddressColumn1, Ram.Ram3.INColumn0);
-            Cable.Join(RamAddressColumn1, Ram.Ram4.INColumn0);
-            Cable.Join(RamAddressColumn1, Ram.Ram5.INColumn0);
-            Cable.Join(RamAddressColumn1, Ram.Ram6.INColumn0);
-            Cable.Join(RamAddressColumn1, Ram.Ram7.INColumn0);
-            Cable.Join(RamAddressColumn1, Ram.Ram8.INColumn0);
-        }
-
-        public override void MethodRamAddressColumn2()
-        {
-            Cable.Join(RamAddressColumn2, Ram.Ram1.INColumn2);
-            Cable.Join(RamAddressColumn2, Ram.Ram2.INColumn2);
-            Cable.Join(RamAddressColumn2, Ram.Ram3.INColumn2);
-            Cable.Join(RamAddressColumn2, Ram.Ram4.INColumn2);
-            Cable.Join(RamAddressColumn2, Ram.Ram5.INColumn2);
-            Cable.Join(RamAddressColumn2, Ram.Ram6.INColumn2);
-            Cable.Join(RamAddressColumn2, Ram.Ram7.INColumn2);
-            Cable.Join(RamAddressColumn2, Ram.Ram8.INColumn2);
-        }
-
-        public override void MethodRamAddressColumn3()
-        {
-            Cable.Join(RamAddressColumn3, Ram.Ram1.INColumn4);
-            Cable.Join(RamAddressColumn3, Ram.Ram2.INColumn4);
-            Cable.Join(RamAddressColumn3, Ram.Ram3.INColumn4);
-            Cable.Join(RamAddressColumn3, Ram.Ram4.INColumn4);
-            Cable.Join(RamAddressColumn3, Ram.Ram5.INColumn4);
-            Cable.Join(RamAddressColumn3, Ram.Ram6.INColumn4);
-            Cable.Join(RamAddressColumn3, Ram.Ram7.INColumn4);
-            Cable.Join(RamAddressColumn3, Ram.Ram8.INColumn4);
-        }
-
-        public override void MethodRamAddressRow1()
-        {
-            Cable.Join(RamAddressRow1, Ram.Ram1.INRow0);
-            Cable.Join(RamAddressRow1, Ram.Ram2.INRow0);
-            Cable.Join(RamAddressRow1, Ram.Ram3.INRow0);
-            Cable.Join(RamAddressRow1, Ram.Ram4.INRow0);
-            Cable.Join(RamAddressRow1, Ram.Ram5.INRow0);
-            Cable.Join(RamAddressRow1, Ram.Ram6.INRow0);
-            Cable.Join(RamAddressRow1, Ram.Ram7.INRow0);
-            Cable.Join(RamAddressRow1, Ram.Ram8.INRow0);
-        }
-
-        public override void MethodRamAddressRow2()
-        {
-            Cable.Join(RamAddressRow2, Ram.Ram1.INRow2);
-            Cable.Join(RamAddressRow2, Ram.Ram2.INRow2);
-            Cable.Join(RamAddressRow2, Ram.Ram3.INRow2);
-            Cable.Join(RamAddressRow2, Ram.Ram4.INRow2);
-            Cable.Join(RamAddressRow2, Ram.Ram5.INRow2);
-            Cable.Join(RamAddressRow2, Ram.Ram6.INRow2);
-            Cable.Join(RamAddressRow2, Ram.Ram7.INRow2);
-            Cable.Join(RamAddressRow2, Ram.Ram8.INRow2);
-        }
-
-        public override void MethodRamAddressRow3()
-        {
-            Cable.Join(RamAddressRow3, Ram.Ram1.INRow4);
-            Cable.Join(RamAddressRow3, Ram.Ram2.INRow4);
-            Cable.Join(RamAddressRow3, Ram.Ram3.INRow4);
-            Cable.Join(RamAddressRow3, Ram.Ram4.INRow4);
-            Cable.Join(RamAddressRow3, Ram.Ram5.INRow4);
-            Cable.Join(RamAddressRow3, Ram.Ram6.INRow4);
-            Cable.Join(RamAddressRow3, Ram.Ram7.INRow4);
-            Cable.Join(RamAddressRow3, Ram.Ram8.INRow4);
-        }
 
         public override void MethodToA()
         {
-            Cable.Join(ToA, RegisterA.WriteEnable);
+            Cable.Join(INToA, RegisterA.WriteEnable);
             Cable.Join(DataWire1, RegisterA.DataInput1);
             Cable.Join(DataWire2, RegisterA.DataInput2);
             Cable.Join(DataWire3, RegisterA.DataInput3);
@@ -135,7 +149,7 @@ namespace LogicComponents
 
         public override void MethodToB()
         {
-            Cable.Join(ToB, RegisterB.WriteEnable);
+            Cable.Join(INToB, RegisterB.WriteEnable);
             Cable.Join(DataWire1, RegisterB.DataInput1);
             Cable.Join(DataWire2, RegisterB.DataInput2);
             Cable.Join(DataWire3, RegisterB.DataInput3);
@@ -148,8 +162,8 @@ namespace LogicComponents
 
         public override void MethodToRam()
         {
-            Cable.Join(ToRam, Ram.Power);
-            Cable.Join(ToRam, Ram.WriteEnable);
+            Cable.Join(INToRam, Ram.Power);
+            Cable.Join(INToRam, Ram.WriteEnable);
             Cable.Join(DataWire1, Ram.Ram1.DataInput);
             Cable.Join(DataWire2, Ram.Ram2.DataInput);
             Cable.Join(DataWire3, Ram.Ram3.DataInput);
@@ -158,8 +172,6 @@ namespace LogicComponents
             Cable.Join(DataWire6, Ram.Ram6.DataInput);
             Cable.Join(DataWire7, Ram.Ram7.DataInput);
             Cable.Join(DataWire8, Ram.Ram8.DataInput);
-            Cable.Join(ToRam, Not.Pin1);
-            Cable.Join(Not.Output, Ram.WriteEnable);
         }
     }
 }

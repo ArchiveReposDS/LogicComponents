@@ -20,6 +20,7 @@ namespace LogicComponents
 
     public class Start
     {
+        // zastanowic sie nad RamAddressRegister - bo moj adres jest troche pokopany - adres ma 8 bitow ale korzysta tylko z 6 (64 miejsca)
         public void Run()
         {
             CounterClass.CounterCable = 0;
@@ -28,14 +29,16 @@ namespace LogicComponents
             DataBus DataBus = new DataBus();
             DataBusHelper BusHelper = new DataBusHelper(DataBus);
 
-            BusHelper.PutDataToRegisterA(new byte[] {1,1,0,0,1,1,0,0});
+            BusHelper.PutDataToRegisterA(new byte[] {1,0,1,0,1,0,1,0});
 
-            Cable.Join(new Pin() { State = 1 }, DataBus.FromA);
+            Cable.Join(new Pin() { State = 1 }, DataBus.INFromA);
+            Cable.Join(new Pin() { State = 1 }, DataBus.INClock);
+
             BusHelper.SetRamAddress(63);  // 0 - 63
-            Cable.Join(new Pin() { State = 1 }, DataBus.ToRam);
+            Cable.Join(new Pin() { State = 1 }, DataBus.INToRam);
 
-            Cable.Join(new Pin() { State = 1 }, DataBus.FromRam);
-            Cable.Join(new Pin() { State = 1 }, DataBus.ToB);
+            Cable.Join(new Pin() { State = 1 }, DataBus.INFromRam);
+            Cable.Join(new Pin() { State = 1 }, DataBus.INToB);
 
 
             int k = 8;
